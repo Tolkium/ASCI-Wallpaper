@@ -83,7 +83,7 @@ function waitForUptimeElement() {
 	startTimestamp = new Date();
 
 	updateSystem();
-	updateAsciiImageDebounce();
+	updateAsciiImage();
 	initGraphs();
 
 	setInterval(() => {
@@ -810,6 +810,60 @@ function waitForSliders() {
 }
 waitForSliders();
 
+function registerWallpaperListener(registerFnName, handler) {
+	const registerFn = window[registerFnName];
+	if (typeof registerFn !== "function") return false;
+
+	registerFn(handler);
+	return true;
+}
+
+const wallpaperHookNames = [
+	"wallpaperRegisterAudioListener",
+	"wallpaperRegisterMediaPropertiesListener",
+	"wallpaperRegisterMediaTimelineListener",
+	"wallpaperRegisterMediaPlaybackListener",
+	"wallpaperRegisterMediaThumbnailListener",
+];
+
+function hasWallpaperEngineHooks() {
+	return wallpaperHookNames.some((name) => typeof window[name] === "function");
+}
+
+function applyWebModeFallbacks() {
+	if (hasWallpaperEngineHooks()) return;
+
+	if (!document.querySelector(".terminal")) {
+		requestAnimationFrame(applyWebModeFallbacks);
+		return;
+	}
+
+	initialLoad = false;
+	updateLayout();
+	refreshAsciiPalette();
+	updateDate();
+	updateClocks();
+	updateTimers();
+	updateSystem();
+
+	const setAudioDefaults = () => {
+		if (!sliders) return;
+		updateSliderVisual(sliders.bass, 0);
+		updateSliderVisual(sliders.mid, 0);
+		updateSliderVisual(sliders.treble, 0);
+		updateSliderVisual(sliders.volume, 0);
+	};
+
+	setAudioDefaults();
+	if (!sliders) requestAnimationFrame(setAudioDefaults);
+
+	document.querySelector(".playing-song .status").textContent = "Idle:";
+	document.querySelector(".playing-song .text").textContent = "";
+	document.querySelector(".currentTime").textContent = formatTime(0);
+	document.querySelector(".playing-song .time").textContent = `[${formatTime(0)}/${formatTime(0)}]`;
+	document.querySelector(".seekbar").textContent = buildSeekbar(0, 0);
+}
+
 function updateSliderVisual(slider, percent) {
 	if (!slider) return;
 
@@ -865,7 +919,7 @@ function wallpaperAudioListener(audioArray) {
 	updateSliderVisual(sliders.volume, Math.floor(smoothed.volume * 100));
 }
 
-window.wallpaperRegisterAudioListener(wallpaperAudioListener);
+registerWallpaperListener("wallpaperRegisterAudioListener", wallpaperAudioListener);
 /* #endregion */
 
 /* #region Media */
@@ -882,7 +936,7 @@ function wallpaperMediaPropertiesListener(event) {
 	document.querySelector(".playing-song .text").textContent = artist || title ? `${artist} - ${title}` : "";
 }
 
-window.wallpaperRegisterMediaPropertiesListener(wallpaperMediaPropertiesListener);
+registerWallpaperListener("wallpaperRegisterMediaPropertiesListener", wallpaperMediaPropertiesListener);
 
 const BAR_LEN = 100;
 function buildSeekbar(position, duration) {
@@ -909,18 +963,20 @@ function wallpaperMediaTimelineListener(event) {
 	document.querySelector(".seekbar").textContent = buildSeekbar(position, duration);
 }
 
-window.wallpaperRegisterMediaTimelineListener(wallpaperMediaTimelineListener);
+registerWallpaperListener("wallpaperRegisterMediaTimelineListener", wallpaperMediaTimelineListener);
 
 function wallpaperMediaPlaybackListener(event) {
 	const element = document.querySelector(".playing-song .status");
 
-	if (event.state !== window.wallpaperMediaIntegration.PLAYBACK_PLAYING) {
+	const PLAYBACK_PLAYING = window.wallpaperMediaIntegration?.PLAYBACK_PLAYING ?? 1;
+
+	if (event.state !== PLAYBACK_PLAYING) {
 		element.textContent = "Idle:";
 	} else {
 		element.textContent = "Playing:";
 	}
 }
-window.wallpaperRegisterMediaPlaybackListener(wallpaperMediaPlaybackListener);
+registerWallpaperListener("wallpaperRegisterMediaPlaybackListener", wallpaperMediaPlaybackListener);
 
 function wallpaperMediaThumbnailListener(event) {
 	currentMediaThumbnail = event.thumbnail || "";
@@ -979,7 +1035,9 @@ function updateAsciiImage(source = null) {
 	};
 }
 
-window.wallpaperRegisterMediaThumbnailListener(wallpaperMediaThumbnailListener);
+registerWallpaperListener("wallpaperRegisterMediaThumbnailListener", wallpaperMediaThumbnailListener);
+
+requestAnimationFrame(applyWebModeFallbacks);
 
 /* #endregion */
 
@@ -1153,7 +1211,7 @@ const updateAsciiImageDebounce = debounce(updateAsciiImage, 150);
 /* #region ASCII GRAPHS (MOCK DATA) */
 const graphConfig = {
 	height: 10, // plot height (rows)
-	maxSamples: 240, // keep extra so resizing still looks smooth
+	maxSamples: 1200, // keep extra so wider terminals can still fill the full width
 	minPanelWidth: 18,
 	maxPanelWidth: 34,
 };
@@ -1274,55 +1332,23 @@ function renderStockGraph(key, label, selector) {
 
 	const height = graphConfig.height;
 	const charW = measureCharWidthPx(pre);
-	const totalChars = Math.max(
-		graphConfig.minPanelWidth,
-		Math.min(graphConfig.maxPanelWidth, Math.floor(pre.clientWidth / Math.max(charW, 1)))
-	);
+	const totalChars = Math.max(graphConfig.minPanelWidth, Math.floor(pre.clientWidth / Math.max(charW, 1)));
 
 	const values = getTailResampled(graphState[key], totalChars);
 	const lines = [];
 
-	// top dashed border
-	lines.push("─".repeat(totalChars));
-
 	for (let row = 0; row < height; row++) {
-		const yValue = Math.round(((height - 1 - row) / (height - 1)) * 100);
-		const isMajorGrid = yValue % 25 === 0;
-
 		let line = "";
 		for (let col = 0; col < totalChars; col++) {
 			const v = values[col] ?? 0;
 			const filled = v * (height - 1);
 			const rowFromBottom = height - 1 - row;
 
-			const inBar = rowFromBottom <= filled;
-
-			// vertical grid every 8 columns when not covered by bar
-			const isVGrid = col % 8 === 0;
-
-			let ch = " ";
-			if (inBar) {
-				// dense blocks near the bottom, lighter near the top
-				const t = filled <= 0 ? 0 : rowFromBottom / Math.max(filled, 1);
-				const ramp = " .:-=+*#%@";
-				const idx = Math.max(0, Math.min(ramp.length - 1, Math.floor(t * (ramp.length - 1))));
-				ch = ramp[idx];
-			} else if (isVGrid && isMajorGrid) {
-				ch = "+";
-			} else if (isVGrid) {
-				ch = "|";
-			} else if (isMajorGrid) {
-				ch = "-";
-			}
-
-			line += ch;
+			line += rowFromBottom <= filled ? "█" : " ";
 		}
 
 		lines.push(line);
 	}
-
-	// bottom dashed border with simple time hint
-	lines.push("─".repeat(totalChars));
 
 	pre.textContent = lines.join("\n");
 }
