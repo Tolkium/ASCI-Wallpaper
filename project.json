@@ -1,0 +1,1317 @@
+{
+	"approved" : true,
+	"contentrating" : "Everyone",
+	"description" : "Main Features:\n- Extensive Customizability\n- Image to ASCII converter\n- Now playing support\n- Time-zone and Date tracking utilities\n\nCustomization Features:\n- Custom ASCII art resolution and colors\n- Dark, Light, and Custom themes\n- Time-zone clocks with labels and day progress bars\n- Date countdown and countup clocks with reoccurring support\n- OS Details section\n\nNotes:\n- ASCII Art best viewed on dark backgrounds\n- ASCII Art chooses the closest color available from in the theme\n- If you found an issue, I'll be glad to fix it :)",
+	"file" : "index.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"appearance" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "Appearance",
+				"type" : "group",
+				"value" : ""
+			},
+			"artbackground" : 
+			{
+				"index" : 52,
+				"order" : 152,
+				"text" : "Background",
+				"type" : "bool",
+				"value" : false
+			},
+			"artbackgroundcolor" : 
+			{
+				"condition" : "artbackground.value === true",
+				"index" : 53,
+				"order" : 153,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "0.050980392156862744 0.06666666666666667 0.06274509803921569"
+			},
+			"ascii_color_mode" : 
+			{
+				"condition" : "coloredascii.value == true",
+				"index" : 50,
+				"options" : 
+				[
+					{
+						"label" : "Theme",
+						"value" : "theme"
+					},
+					{
+						"label" : "Image",
+						"value" : "image"
+					}
+				],
+				"order" : 150,
+				"text" : "Color Mode",
+				"type" : "combo",
+				"value" : "theme"
+			},
+			"ascii_static_color" : 
+			{
+				"condition" : "coloredascii.value == false",
+				"index" : 51,
+				"order" : 151,
+				"text" : "Static Color",
+				"type" : "color",
+				"value" : "0.8941176470588236 0.9294117647058824 0.9176470588235294"
+			},
+			"asciiart" : 
+			{
+				"index" : 45,
+				"order" : 145,
+				"text" : "ASCII Art",
+				"type" : "group",
+				"value" : ""
+			},
+			"asciiresolution" : 
+			{
+				"fraction" : false,
+				"group" : "asciiart",
+				"index" : 47,
+				"max" : 300,
+				"min" : 50,
+				"order" : 147,
+				"step" : 25,
+				"text" : "Resolution (Higher = Lag)",
+				"type" : "slider",
+				"value" : 50
+			},
+			"audio" : 
+			{
+				"index" : 41,
+				"order" : 141,
+				"text" : "Audio",
+				"type" : "group",
+				"value" : ""
+			},
+			"backgroundcolor" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 22,
+				"order" : 122,
+				"text" : "Background : <small>#0d1110</small>",
+				"type" : "color",
+				"value" : "0.050980392156862744 0.06666666666666667 0.06274509803921569"
+			},
+			"black" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 25,
+				"order" : 125,
+				"text" : "Black : #0d1110",
+				"type" : "color",
+				"value" : "0.050980392156862744 0.06666666666666667 0.06274509803921569"
+			},
+			"blue" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 33,
+				"order" : 133,
+				"text" : "Blue : #61afef",
+				"type" : "color",
+				"value" : "0.3803921568627451 0.6862745098039216 0.9372549019607843"
+			},
+			"bright-black" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 26,
+				"order" : 126,
+				"text" : "Bright Black : #5c6370",
+				"type" : "color",
+				"value" : "0.3607843137254902 0.38823529411764707 0.4392156862745098"
+			},
+			"bright-blue" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 34,
+				"order" : 134,
+				"text" : "Bright Blue : #82aaff",
+				"type" : "color",
+				"value" : "0.5098039215686274 0.6666666666666666 1"
+			},
+			"bright-cyan" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 38,
+				"order" : 138,
+				"text" : "Bright Cyan : #9aedfe",
+				"type" : "color",
+				"value" : "0.6039215686274509 0.9294117647058824 0.996078431372549"
+			},
+			"bright-green" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 30,
+				"order" : 130,
+				"text" : "Bright Green : #b1f2a7",
+				"type" : "color",
+				"value" : "0.6941176470588235 0.9490196078431372 0.6549019607843137"
+			},
+			"bright-magenta" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 36,
+				"order" : 136,
+				"text" : "Bright Magenta : #d4bfff",
+				"type" : "color",
+				"value" : "0.8313725490196079 0.7490196078431373 1"
+			},
+			"bright-red" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 28,
+				"order" : 128,
+				"text" : "Bright Red : #f28b82",
+				"type" : "color",
+				"value" : "0.9490196078431372 0.5450980392156862 0.5098039215686274"
+			},
+			"bright-white" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 40,
+				"order" : 140,
+				"text" : "Bright White : #ffffff",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"bright-yellow" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 32,
+				"order" : 132,
+				"text" : "Bright Yellow : #ffdd88",
+				"type" : "color",
+				"value" : "1 0.8666666666666667 0.5333333333333333"
+			},
+			"clabel0" : 
+			{
+				"condition" : "time0.value == true",
+				"index" : 58,
+				"order" : 158,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : "HOME"
+			},
+			"clabel1" : 
+			{
+				"condition" : "time1.value == true",
+				"index" : 60,
+				"order" : 160,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : "CEST"
+			},
+			"clabel2" : 
+			{
+				"condition" : "time2.value == true",
+				"index" : 63,
+				"order" : 163,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : "UTC"
+			},
+			"clabel3" : 
+			{
+				"condition" : "time3.value == true",
+				"index" : 66,
+				"order" : 166,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : "PST"
+			},
+			"clabel4" : 
+			{
+				"condition" : "time4.value == true",
+				"index" : 69,
+				"order" : 169,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : "IST"
+			},
+			"coloredascii" : 
+			{
+				"group" : "asciiart",
+				"index" : 49,
+				"order" : 149,
+				"text" : "Colored Art",
+				"type" : "bool",
+				"value" : true
+			},
+			"cpu" : 
+			{
+				"index" : 94,
+				"order" : 194,
+				"text" : "CPU",
+				"type" : "textinput",
+				"value" : "[CPU]"
+			},
+			"cyan" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 37,
+				"order" : 137,
+				"text" : "Cyan : #56b6c2",
+				"type" : "color",
+				"value" : "0.33725490196078434 0.7137254901960784 0.7607843137254902"
+			},
+			"dateformat" : 
+			{
+				"index" : 2,
+				"options" : 
+				[
+					{
+						"label" : "DD/MM/YYYY",
+						"value" : "ddmmyyyy"
+					},
+					{
+						"label" : "MM/DD/YYYY",
+						"value" : "mmddyyyy"
+					},
+					{
+						"label" : "YYYY/MM/DD",
+						"value" : "yyyymmdd"
+					}
+				],
+				"order" : 102,
+				"text" : "Date Format",
+				"type" : "combo",
+				"value" : "ddmmyyyy"
+			},
+			"defaultimage" : 
+			{
+				"group" : "appearance",
+				"index" : 46,
+				"order" : 146,
+				"text" : "Logo",
+				"type" : "file",
+				"value" : "default.png"
+			},
+			"disk" : 
+			{
+				"index" : 97,
+				"order" : 197,
+				"text" : "Disk",
+				"type" : "textinput",
+				"value" : "930G"
+			},
+			"gpu" : 
+			{
+				"index" : 95,
+				"order" : 195,
+				"text" : "GPU",
+				"type" : "textinput",
+				"value" : "[GPU]"
+			},
+			"green" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 29,
+				"order" : 129,
+				"text" : "Green : #98c379",
+				"type" : "color",
+				"value" : "0.596078431372549 0.7647058823529411 0.4745098039215686"
+			},
+			"hideitoobigiwarning" : 
+			{
+				"index" : 5,
+				"order" : 105,
+				"text" : "Ignore <i>Too Big</i> Warning",
+				"type" : "bool",
+				"value" : false
+			},
+			"hidetimepanel" : 
+			{
+				"index" : 14,
+				"order" : 114,
+				"text" : "Hide Time Panel",
+				"type" : "bool",
+				"value" : false
+			},
+			"hostname" : 
+			{
+				"index" : 89,
+				"order" : 189,
+				"text" : "Hostname",
+				"type" : "textinput",
+				"value" : "[USER]"
+			},
+			"ip" : 
+			{
+				"index" : 90,
+				"order" : 190,
+				"text" : "IP",
+				"type" : "textinput",
+				"value" : "192.168.0.2"
+			},
+			"kernel" : 
+			{
+				"index" : 92,
+				"order" : 192,
+				"text" : "Kernel",
+				"type" : "textinput",
+				"value" : "10.0.26100.4656"
+			},
+			"layout" : 
+			{
+				"index" : 4,
+				"order" : 104,
+				"text" : "Layout",
+				"type" : "group",
+				"value" : ""
+			},
+			"layout_alignment" : 
+			{
+				"condition" : "layout_direction.value === \"horizontal\"",
+				"index" : 17,
+				"options" : 
+				[
+					{
+						"label" : "Top",
+						"value" : "top"
+					},
+					{
+						"label" : "Center",
+						"value" : "center"
+					},
+					{
+						"label" : "Bottom",
+						"value" : "bottom"
+					}
+				],
+				"order" : 117,
+				"text" : "Alignment",
+				"type" : "combo",
+				"value" : "top"
+			},
+			"layout_audio_location" : 
+			{
+				"condition" : "",
+				"index" : 19,
+				"options" : 
+				[
+					{
+						"label" : "Time",
+						"value" : "time"
+					},
+					{
+						"label" : "Center",
+						"value" : "center"
+					},
+					{
+						"label" : "Overview",
+						"value" : "overview"
+					}
+				],
+				"order" : 119,
+				"text" : "Audio Location",
+				"type" : "combo",
+				"value" : "overview"
+			},
+			"layout_custom_margin" : 
+			{
+				"index" : 7,
+				"order" : 107,
+				"text" : "Custom Margins",
+				"type" : "bool",
+				"value" : false
+			},
+			"layout_direction" : 
+			{
+				"index" : 15,
+				"options" : 
+				[
+					{
+						"label" : "Vertical",
+						"value" : "vertical"
+					},
+					{
+						"label" : "Horizontal",
+						"value" : "horizontal"
+					}
+				],
+				"order" : 115,
+				"text" : "Terminal Direction",
+				"type" : "combo",
+				"value" : "vertical"
+			},
+			"layout_divider" : 
+			{
+				"condition" : "",
+				"index" : 13,
+				"order" : 113,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"layout_divider2" : 
+			{
+				"condition" : "",
+				"index" : 6,
+				"order" : 106,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"layout_position" : 
+			{
+				"condition" : "layout_direction.value === \"vertical\"",
+				"index" : 16,
+				"options" : 
+				[
+					{
+						"label" : "Left",
+						"value" : "left"
+					},
+					{
+						"label" : "Center",
+						"value" : "center"
+					},
+					{
+						"label" : "Right",
+						"value" : "right"
+					}
+				],
+				"order" : 116,
+				"text" : "Position",
+				"type" : "combo",
+				"value" : "right"
+			},
+			"layout_vertical_order" : 
+			{
+				"condition" : "",
+				"index" : 18,
+				"options" : 
+				[
+					{
+						"label" : "Time First",
+						"value" : "time"
+					},
+					{
+						"label" : "Overview First",
+						"value" : "overview"
+					}
+				],
+				"order" : 118,
+				"text" : "Order",
+				"type" : "combo",
+				"value" : "time"
+			},
+			"leaveemptyfordefaults" : 
+			{
+				"condition" : "layout_custom_margin.value == true",
+				"index" : 12,
+				"order" : 112,
+				"text" : "<small>Leave Empty for Defaults</small>",
+				"type" : "text",
+				"value" : false
+			},
+			"magenta" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 35,
+				"order" : 135,
+				"text" : "Magenta : #c678dd",
+				"type" : "color",
+				"value" : "0.7764705882352941 0.47058823529411764 0.8666666666666667"
+			},
+			"newproperty" : 
+			{
+				"index" : 56,
+				"order" : 156,
+				"text" : "Hour offset of the timezone.<small><br>Use decimals for minute offset:<br>.25 (15min) | .5 (30min) | .75 (45min)</small>",
+				"type" : "text",
+				"value" : false
+			},
+			"newproperty1" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 24,
+				"order" : 124,
+				"text" : "<b>Note: </b> Changing colors below will affect ASCII art. ASCII art colors are picked by similarity",
+				"type" : "text",
+				"value" : false
+			},
+			"os" : 
+			{
+				"index" : 91,
+				"order" : 191,
+				"text" : "OS",
+				"type" : "textinput",
+				"value" : "Windows 11"
+			},
+			"ram" : 
+			{
+				"index" : 96,
+				"order" : 196,
+				"text" : "RAM",
+				"type" : "textinput",
+				"value" : "32G"
+			},
+			"red" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 27,
+				"order" : 127,
+				"text" : "Red : #e06c75",
+				"type" : "color",
+				"value" : "0.8784313725490196 0.4235294117647059 0.4588235294117647"
+			},
+			"saturation" : 
+			{
+				"condition" : "coloredascii.value == true",
+				"fraction" : true,
+				"group" : "asciiart",
+				"index" : 54,
+				"max" : 5,
+				"min" : 0,
+				"order" : 154,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Saturation<small><br>0 = Grayscale<br>1 = Normal<br>> 1 = More Vivid</small>",
+				"type" : "slider",
+				"value" : 1
+			},
+			"schemecolor" : 
+			{
+				"group" : "appearance",
+				"index" : 1,
+				"order" : 1,
+				"text" : "Scheme Color",
+				"type" : "color",
+				"value" : "0.050980392156862744 0.06666666666666667 0.06274509803921569"
+			},
+			"shell" : 
+			{
+				"index" : 93,
+				"order" : 193,
+				"text" : "Shell",
+				"type" : "textinput",
+				"value" : "PowerShell 7.4"
+			},
+			"shiftbottom" : 
+			{
+				"condition" : "layout_custom_margin.value == true",
+				"index" : 9,
+				"order" : 109,
+				"text" : "Bottom (px)",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"shiftleft" : 
+			{
+				"condition" : "layout_custom_margin.value == true",
+				"index" : 10,
+				"order" : 110,
+				"text" : "Left (px)",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"shiftright" : 
+			{
+				"condition" : "layout_custom_margin.value == true",
+				"index" : 11,
+				"order" : 111,
+				"text" : "Right (px)",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"shifttop" : 
+			{
+				"condition" : "layout_custom_margin.value == true",
+				"index" : 8,
+				"order" : 108,
+				"text" : "Top (px)",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"showextras" : 
+			{
+				"group" : "audio",
+				"index" : 42,
+				"order" : 142,
+				"text" : "Show Extra Sliders (Bass/Mid/Treble)",
+				"type" : "bool",
+				"value" : true
+			},
+			"smoothness" : 
+			{
+				"fraction" : true,
+				"group" : "audio",
+				"index" : 43,
+				"max" : 0.9,
+				"min" : 0,
+				"order" : 143,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Smoothness",
+				"type" : "slider",
+				"value" : 0.6
+			},
+			"system_additional_information" : 
+			{
+				"index" : 98,
+				"order" : 198,
+				"text" : "Additional Information",
+				"type" : "bool",
+				"value" : true
+			},
+			"system_stats_divider-1" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 101,
+				"order" : 201,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-10" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 128,
+				"order" : 228,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-2" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 104,
+				"order" : 204,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-3" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 107,
+				"order" : 207,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-4" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 110,
+				"order" : 210,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-5" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 113,
+				"order" : 213,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-6" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 116,
+				"order" : 216,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-7" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 119,
+				"order" : 219,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-8" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 122,
+				"order" : 222,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_divider-9" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 125,
+				"order" : 225,
+				"text" : "---------",
+				"type" : "text",
+				"value" : false
+			},
+			"system_stats_prop-1" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 99,
+				"order" : 199,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-10" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 126,
+				"order" : 226,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-11" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 129,
+				"order" : 229,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-2" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 102,
+				"order" : 202,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-3" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 105,
+				"order" : 205,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-4" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 108,
+				"order" : 208,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-5" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 111,
+				"order" : 211,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-6" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 114,
+				"order" : 214,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-7" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 117,
+				"order" : 217,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-8" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 120,
+				"order" : 220,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_prop-9" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 123,
+				"order" : 223,
+				"text" : "Property",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-1" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 100,
+				"order" : 200,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-10" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 127,
+				"order" : 227,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-11" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 130,
+				"order" : 230,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-2" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 103,
+				"order" : 203,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-3" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 106,
+				"order" : 206,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-4" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 109,
+				"order" : 209,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-5" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 112,
+				"order" : 212,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-6" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 115,
+				"order" : 215,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-7" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 118,
+				"order" : 218,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-8" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 121,
+				"order" : 221,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"system_stats_value-9" : 
+			{
+				"condition" : "system_additional_information.value === true",
+				"index" : 124,
+				"order" : 224,
+				"text" : "Value",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"systeminformation" : 
+			{
+				"index" : 88,
+				"order" : 188,
+				"text" : "System Information",
+				"type" : "group",
+				"value" : ""
+			},
+			"tdate0" : 
+			{
+				"condition" : "timer0.value == true",
+				"index" : 75,
+				"order" : 175,
+				"text" : "Date",
+				"type" : "textinput",
+				"value" : "1/1"
+			},
+			"tdate1" : 
+			{
+				"condition" : "timer1.value == true",
+				"index" : 78,
+				"order" : 178,
+				"text" : "Date",
+				"type" : "textinput",
+				"value" : "1/1/2000"
+			},
+			"tdate2" : 
+			{
+				"condition" : "timer2.value == true",
+				"index" : 81,
+				"order" : 181,
+				"text" : "Date",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"tdate3" : 
+			{
+				"condition" : "timer3.value == true",
+				"index" : 84,
+				"order" : 184,
+				"text" : "Date",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"tdate4" : 
+			{
+				"condition" : "timer4.value == true",
+				"index" : 87,
+				"order" : 187,
+				"text" : "Date",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"textcolor" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 23,
+				"order" : 123,
+				"text" : "Text Color : <small>#e4edea</small>",
+				"type" : "color",
+				"value" : "0.8941176470588236 0.9294117647058824 0.9176470588235294"
+			},
+			"textsize" : 
+			{
+				"fraction" : true,
+				"group" : "appearance",
+				"index" : 1,
+				"max" : 48,
+				"min" : 4,
+				"order" : 101,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Font Size (pt)",
+				"type" : "slider",
+				"value" : 16
+			},
+			"theme" : 
+			{
+				"index" : 21,
+				"options" : 
+				[
+					{
+						"label" : "Dark",
+						"value" : "dark"
+					},
+					{
+						"label" : "Light",
+						"value" : "light"
+					},
+					{
+						"label" : "Custom",
+						"value" : "custom"
+					}
+				],
+				"order" : 121,
+				"text" : "Theme",
+				"type" : "combo",
+				"value" : "dark"
+			},
+			"themegroup" : 
+			{
+				"index" : 20,
+				"order" : 120,
+				"text" : "Theme",
+				"type" : "group",
+				"value" : ""
+			},
+			"time0" : 
+			{
+				"index" : 57,
+				"order" : 157,
+				"text" : "Time-0",
+				"type" : "bool",
+				"value" : true
+			},
+			"time1" : 
+			{
+				"index" : 59,
+				"order" : 159,
+				"text" : "Time-1",
+				"type" : "bool",
+				"value" : true
+			},
+			"time2" : 
+			{
+				"index" : 62,
+				"order" : 162,
+				"text" : "Time-2",
+				"type" : "bool",
+				"value" : true
+			},
+			"time3" : 
+			{
+				"index" : 65,
+				"order" : 165,
+				"text" : "Time-3",
+				"type" : "bool",
+				"value" : true
+			},
+			"time4" : 
+			{
+				"index" : 68,
+				"order" : 168,
+				"text" : "Time-4",
+				"type" : "bool",
+				"value" : true
+			},
+			"timeformat" : 
+			{
+				"index" : 3,
+				"options" : 
+				[
+					{
+						"label" : "24 hour",
+						"value" : "24"
+					},
+					{
+						"label" : "12 hour",
+						"value" : "12"
+					}
+				],
+				"order" : 103,
+				"text" : "Time Format",
+				"type" : "combo",
+				"value" : "24"
+			},
+			"timer0" : 
+			{
+				"index" : 73,
+				"order" : 173,
+				"text" : "Timer-0",
+				"type" : "bool",
+				"value" : true
+			},
+			"timer1" : 
+			{
+				"index" : 76,
+				"order" : 176,
+				"text" : "Timer-1",
+				"type" : "bool",
+				"value" : true
+			},
+			"timer2" : 
+			{
+				"index" : 79,
+				"order" : 179,
+				"text" : "Timer-2",
+				"type" : "bool",
+				"value" : false
+			},
+			"timer3" : 
+			{
+				"index" : 82,
+				"order" : 182,
+				"text" : "Timer-3",
+				"type" : "bool",
+				"value" : false
+			},
+			"timer4" : 
+			{
+				"index" : 85,
+				"order" : 185,
+				"text" : "Timer-4",
+				"type" : "bool",
+				"value" : false
+			},
+			"timers" : 
+			{
+				"index" : 71,
+				"order" : 171,
+				"text" : "Timers",
+				"type" : "group",
+				"value" : ""
+			},
+			"timerstext" : 
+			{
+				"index" : 72,
+				"order" : 172,
+				"text" : "Use DD/MM/YYYY for countdowns<br>or DD/MM for repeated events",
+				"type" : "text",
+				"value" : false
+			},
+			"times" : 
+			{
+				"index" : 55,
+				"order" : 155,
+				"text" : "Times",
+				"type" : "group",
+				"value" : ""
+			},
+			"timezone1" : 
+			{
+				"condition" : "time1.value == true",
+				"index" : 61,
+				"order" : 161,
+				"text" : "Timezone",
+				"type" : "textinput",
+				"value" : "2"
+			},
+			"timezone2" : 
+			{
+				"condition" : "time2.value == true",
+				"index" : 64,
+				"order" : 164,
+				"text" : "Timezone",
+				"type" : "textinput",
+				"value" : "0"
+			},
+			"timezone3" : 
+			{
+				"condition" : "time3.value == true",
+				"index" : 67,
+				"order" : 167,
+				"text" : "Timezone",
+				"type" : "textinput",
+				"value" : "-7"
+			},
+			"timezone4" : 
+			{
+				"condition" : "time4.value == true",
+				"index" : 70,
+				"order" : 170,
+				"text" : "Timezone",
+				"type" : "textinput",
+				"value" : "5.5"
+			},
+			"tlabel0" : 
+			{
+				"condition" : "timer0.value == true",
+				"index" : 74,
+				"order" : 174,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : "NEW_YEAR"
+			},
+			"tlabel1" : 
+			{
+				"condition" : "timer1.value == true",
+				"index" : 77,
+				"order" : 177,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : "YEAR_2000"
+			},
+			"tlabel2" : 
+			{
+				"condition" : "timer2.value == true",
+				"index" : 80,
+				"order" : 180,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"tlabel3" : 
+			{
+				"condition" : "timer3.value == true",
+				"index" : 83,
+				"order" : 183,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"tlabel4" : 
+			{
+				"condition" : "timer4.value == true",
+				"index" : 86,
+				"order" : 186,
+				"text" : "Label",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"usemediaart" : 
+			{
+				"group" : "appearance",
+				"index" : 48,
+				"order" : 148,
+				"text" : "Use Media Art",
+				"type" : "bool",
+				"value" : true
+			},
+			"volume_sensitivity" : 
+			{
+				"fraction" : true,
+				"index" : 44,
+				"max" : 10,
+				"min" : 0.1,
+				"order" : 144,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Sensitivity",
+				"type" : "slider",
+				"value" : 1
+			},
+			"white" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 39,
+				"order" : 139,
+				"text" : "White : #e4edea",
+				"type" : "color",
+				"value" : "0.8941176470588236 0.9294117647058824 0.9176470588235294"
+			},
+			"yellow" : 
+			{
+				"condition" : "theme.value === \"custom\"",
+				"index" : 31,
+				"order" : 131,
+				"text" : "Yellow : #e5c07b",
+				"type" : "color",
+				"value" : "0.8980392156862745 0.7529411764705882 0.4823529411764706"
+			}
+		},
+		"supportsaudioprocessing" : true
+	},
+	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"supportsAudio" : true,
+	"tags" : [ "Retro" ],
+	"title" : "Neofetch Terminal",
+	"type" : "web",
+	"version" : 10,
+	"visibility" : "public",
+	"workshopid" : "3528316973",
+	"workshopurl" : "steam://url/CommunityFilePage/3528316973"
+}
